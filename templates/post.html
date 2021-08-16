@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>User Registration</title>
+</head>
+<body>
+<h1>Welcome {{ name }}</h1>
+<h2>Create Post</h2>
+<form method="post">
+    {% csrf_token %}
+    {% for fm in form %}
+        {{ filed.label_tag }}  {{ fm }}  {{ fm.errore|striptags }} <br><br>
+    {% endfor %}
+    <button type="submit">Post</button>
+</form>
+<table border="2" align="center">
+    <tr>
+        <th colspan="4">All Post</th>
+    </tr>
+    <tr>
+        <tc>
+            <th>USER</th>
+        </tc>
+        <tc>
+            <th>POST</th>
+        </tc>
+        <tc>
+            <th>Creat</th>
+        </tc>
+        <tc>
+            <th>Last Update</th>
+        </tc>
+    </tr>
+    {% for data in post %}
+        <tr>
+        <tc>
+            <th>{{ data.user }}</th>
+        </tc>
+        <tc>
+            <th>{{ data.text }}</th>
+        </tc>
+        <tc>
+            <th>{{ data.creat_at }}</th>
+        </tc>
+        <tc>
+            <th>{{ data.updated_at }}</th>
+        </tc>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'logout' %}">Log Out</a>
+</body>
+</html>
